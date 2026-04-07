@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/logo.png" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RailPulse | Live Mumbai Train Tracker</title>
+    
+    <!-- Nuclear option to eradicate Google Translate Top Banner UI completely -->
+    <style>
+      .goog-te-banner-frame,
+      .skiptranslate.goog-te-gadget,
+      .skiptranslate > iframe,
+      .VIpgJd-ZVi9od-aZ2wEe-wOHMyf,
+      .VIpgJd-ZVi9od-aZ2wEe-wOHMyf-ti6hGc,
+      .VIpgJd-ZVi9od-ORHb-OEVmcd,
+      iframe[src*="translate.google.com"],
+      iframe[src*="translate.googleapis.com"],
+      iframe[id=":1.container"],
+      iframe.skiptranslate {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        width: 0 !important;
+        height: 0 !important;
+        position: absolute !important;
+        z-index: -9999 !important;
+        top: -9999px !important;
+      }
+      body {
+        top: 0 !important;
+        position: static !important;
+        padding-top: 0 !important;
+        margin-top: 0 !important;
+      }
+      #goog-gt-tt {
+        display: none !important;
+      }
+    </style>
+
+    <!-- Google Translate Script Setup -->
+    <script type="text/javascript">
+      function googleTranslateElementInit() {
+        if (window.google && window.google.translate) {
+          new window.google.translate.TranslateElement({
+            pageLanguage: 'en',
+            includedLanguages: 'en,hi,mr,gu,bn,ta,te,pa,ur,ml,kn',
+            autoDisplay: false
+          }, 'google_translate_element');
+        }
+      }
+
+      // Mutation Observer to brutally destroy the Google Translate iframe on sight
+      const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+          mutation.addedNodes.forEach((node) => {
+            if (node.tagName === 'IFRAME' || (node.classList && node.classList.contains('skiptranslate'))) {
+              if (node.src && node.src.includes('translate')) {
+                node.style.display = 'none';
+                node.style.visibility = 'hidden';
+                node.style.opacity = '0';
+              }
+            }
+          });
+        });
+      });
+      observer.observe(document.documentElement, { childList: true, subtree: true });
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+  </head>
+  <body>
+    <!-- Hidden container for Google Translate widget -->
+    <div id="google_translate_element" style="display:none;"></div>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
