@@ -9,7 +9,8 @@ import { Train, MapPin, Plus, Clock, ShieldCheck, AlertCircle, XCircle, Trash2, 
 import ConfirmationModal from '../components/ConfirmationModal';
 import SpeechButton from '../components/SpeechButton';
 
-const socket = io('http://localhost:5000');
+const SOCKET_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
+const socket = io(SOCKET_URL);
 
 const Dashboard = ({ onViewProfile }) => {
   const { user } = useContext(AuthContext);

@@ -6,7 +6,8 @@ import { AuthContext } from '../context/AuthContext';
 import API from '../api/axios';
 import { toast } from 'react-hot-toast';
 
-const socket = io('http://localhost:5000');
+const SOCKET_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
+const socket = io(SOCKET_URL);
 
 // Format a date to "Apr 6, 2026 · 5:30 PM"
 const formatTimestamp = (date) => {
