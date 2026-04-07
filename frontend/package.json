@@ -13,22 +13,22 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "@vitejs/plugin-react": "^6.0.1",
+    "@vitejs/plugin-react": "^4.3.4",
     "axios": "1.14.0",
-    "framer-motion": "^12.38.0",
+    "framer-motion": "^12.4.7",
     "lucide-react": "^1.7.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "react-hot-toast": "^2.6.0",
     "react-icons": "^5.6.0",
     "socket.io-client": "^4.8.3",
-    "vite": "^8.0.3"
+    "vite": "^6.2.0"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4.2.2",
+    "@tailwindcss/postcss": "^4.0.9",
     "autoprefixer": "^10.4.27",
     "postcss": "^8.5.8",
-    "tailwindcss": "^4.2.2",
-    "vite-plugin-pwa": "^1.2.0"
+    "tailwindcss": "^4.0.9",
+    "vite-plugin-pwa": "^0.21.1"
   }
 }
