@@ -10,7 +10,7 @@
 
 ## 📸 Screenshots & Showcase
 
-| ![Mockup 1](./public/railpulse ss1.png) | ![Mockup 2](./public/railpulse ss2.png) |
+| ![Mockup 1](./frontend/public/railpulse%20ss1.png) | ![Mockup 2](./frontend/public/railpulse%20ss2.png) |
 | :---: | :---: |
 | *Modern Aurora Glassmorphism UI* | *Live Crowdsourced Reports* |
 
