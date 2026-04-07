@@ -1,6 +1,6 @@
 # 🚉 RailPulse — Live Mumbai Rail Network Tracker
 
-[![Live Demo](https://img.shields.io/badge/Live-Demo%20-blue?style=for-the-badge&logo=google-chrome)](https://railpulse-mumbai.vercel.app)
+[![Live Demo](https://rail-pulse-project.vercel.app)
 [![Version](https://img.shields.io/badge/Version-1.0.0-purple?style=for-the-badge)](https://github.com/Sudip294/RailPulse)
 [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
 
