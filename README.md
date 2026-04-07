@@ -10,7 +10,7 @@
 
 ## 📸 Screenshots & Showcase
 
-| ![Mockup 1](https://via.placeholder.com/800x450?text=RailPulse+Aurora+UI) | ![Mockup 2](https://via.placeholder.com/800x450?text=Live+Commuter+Feed) |
+| ![Mockup 1](./public/railpulse ss1.png) | ![Mockup 2](./public/railpulse ss2.png) |
 | :---: | :---: |
 | *Modern Aurora Glassmorphism UI* | *Live Crowdsourced Reports* |
 
