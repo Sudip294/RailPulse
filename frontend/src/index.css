@@ -5,11 +5,15 @@
 :root {
   --toast-bg: rgba(255, 255, 255, 0.8);
   --toast-border: rgba(0, 0, 0, 0.1);
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.2);
 }
 
 .dark {
   --toast-bg: rgba(15, 23, 42, 0.8);
   --toast-border: rgba(255, 255, 255, 0.1);
+  --glass-bg: rgba(15, 23, 42, 0.6);
+  --glass-border: rgba(255, 255, 255, 0.1);
 }
 
 @layer base {
@@ -103,23 +107,12 @@
   }
 }
 
-@theme {
-  --color-glass-bg: rgba(255, 255, 255, 0.4);
-  --color-glass-bg-dark: rgba(15, 23, 42, 0.3);
-}
-
 @utility glass {
-  background: var(--color-glass-bg);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(0, 0, 0, 0.05);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
-
-  @variant dark {
-    background: var(--color-glass-bg-dark);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-  }
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
 }
 
 /* --- Hide Google Translate Native UI --- */
