@@ -200,7 +200,7 @@ const Dashboard = ({ onViewProfile }) => {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
-              className="relative overflow-hidden glass rounded-3xl border border-white/20 dark:border-white/10 shadow-xl hover:shadow-[0_0_20px_rgba(59,130,246,0.15)] dark:hover:shadow-[0_0_20px_rgba(147,51,234,0.15)] transition-all group"
+              className="relative overflow-hidden backdrop-blur-[12px] bg-white/70 dark:bg-slate-900/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.1)] rounded-3xl border border-white/20 dark:border-white/10 hover:shadow-[0_0_20px_rgba(59,130,246,0.15)] dark:hover:shadow-[0_0_20px_rgba(147,51,234,0.15)] transition-all group"
             >
               {/* Color Band for Line */}
               <div className={`absolute top-0 left-0 w-2 h-full ${report.line === 'Western' ? 'bg-gradient-to-b from-orange-400 to-red-500' : 'bg-gradient-to-b from-blue-400 to-indigo-600'}`}></div>

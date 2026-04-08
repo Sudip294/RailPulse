@@ -116,7 +116,7 @@ function AppContent() {
       <CustomCursor />
 
       <Toaster position="top-center" gutter={8} toastOptions={{
-        className: 'glass text-sm font-medium',
+        className: 'backdrop-blur-[12px] shadow-[0_8px_32px_0_rgba(31,38,135,0.1)] rounded-2xl text-sm font-medium',
         style: { background: 'var(--toast-bg)', backdropFilter: 'blur(10px)', color: 'inherit', border: '1px solid var(--toast-border)' }
       }} />
 

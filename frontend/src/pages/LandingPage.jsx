@@ -258,7 +258,7 @@ const LandingPage = ({ isDarkMode, authView, setAuthView }) => {
           <motion.div
             animate={{ y: [0, -6, 0] }}
             transition={{ repeat: Infinity, duration: 3, ease: 'easeInOut' }}
-            className="absolute -top-4 -right-2 sm:-right-6 glass rounded-2xl px-4 py-3 shadow-xl border border-white/20 dark:border-white/10 flex items-center gap-2"
+            className="absolute -top-4 -right-2 sm:-right-6 backdrop-blur-[12px] bg-white/70 dark:bg-slate-900/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.1)] rounded-2xl px-4 py-3 border border-white/20 dark:border-white/10 flex items-center gap-2"
           >
             <div className="p-1.5 rounded-lg bg-orange-500/20">
               <Activity size={14} className="text-orange-500" />
@@ -273,7 +273,7 @@ const LandingPage = ({ isDarkMode, authView, setAuthView }) => {
           <motion.div
             animate={{ y: [0, 6, 0] }}
             transition={{ repeat: Infinity, duration: 4, ease: 'easeInOut', delay: 1 }}
-            className="absolute -bottom-4 -left-2 sm:-left-6 glass rounded-2xl px-4 py-3 shadow-xl border border-white/20 dark:border-white/10 flex items-center gap-2"
+            className="absolute -bottom-4 -left-2 sm:-left-6 backdrop-blur-[12px] bg-white/70 dark:bg-slate-900/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.1)] rounded-2xl px-4 py-3 border border-white/20 dark:border-white/10 flex items-center gap-2"
           >
             <div className="p-1.5 rounded-lg bg-blue-500/20">
               <Clock size={14} className="text-blue-500" />

@@ -30,7 +30,7 @@ const Signup = ({ switchToLogin }) => {
       initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.95 }}
-      className="max-w-md mx-auto p-8 glass rounded-3xl"
+      className="max-w-md mx-auto p-8 backdrop-blur-[12px] bg-white/70 dark:bg-slate-900/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.1)] border border-white/20 dark:border-white/10 rounded-3xl"
     >
       <div className="text-center mb-8">
         <h2 className="text-3xl font-bold">Join RailPulse</h2>
