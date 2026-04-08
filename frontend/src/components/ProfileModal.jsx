@@ -322,6 +322,7 @@ const ProfileModal = ({ isOpen, onClose, targetUserId }) => {
                       </button>
                       <button 
                         onClick={() => {
+                          toast.success('Logged out successfully! ✅');
                           logout();
                           onClose();
                         }} 
