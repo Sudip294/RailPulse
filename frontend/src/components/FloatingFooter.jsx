@@ -35,7 +35,7 @@ const FloatingFooter = () => {
           borderColor: "rgba(255, 255, 255, 0.2)"
         }}
         transition={{ duration: 0.1, ease: "easeOut" }}
-        className="glass rounded-2xl md:rounded-full px-4 md:px-8 py-3 md:py-4 flex flex-col md:flex-row items-center justify-between gap-4 shadow-2xl transition-all border border-white/20 dark:border-white/10 group relative overflow-hidden bg-white/40 dark:bg-slate-900/40"
+        className="glass rounded-2xl md:rounded-full px-4 md:px-8 py-3 md:py-4 flex flex-col md:flex-row items-center justify-between gap-4 shadow-2xl transition-all border border-white/20 dark:border-white/10 group relative overflow-hidden bg-white/40 dark:bg-slate-900/40 bg-clip-padding"
       >
         {/* Animated Sweep Effect */}
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:animate-[sweep_2s_infinite] pointer-events-none" />
@@ -114,13 +114,7 @@ const FloatingFooter = () => {
           </div>
         </div>
 
-        <style dangerouslySetInnerHTML={{
-          __html: `
-          @keyframes sweep {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(200%); }
-          }
-        ` }} />
+
       </motion.div>
     </div>
   );
