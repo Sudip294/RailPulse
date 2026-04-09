@@ -54,6 +54,7 @@ const GlobalChat = ({ isOpen, onClose, onViewProfile }) => {
 
   // Edit/Delete States
   const [editingId, setEditingId] = useState(null);
+  const [activeActionId, setActiveActionId] = useState(null);
   const [editValue, setEditValue] = useState('');
   const [confirmDeleteId, setConfirmDeleteId] = useState(null);
   const [undoCountdown, setUndoCountdown] = useState(0);
@@ -146,8 +147,9 @@ const GlobalChat = ({ isOpen, onClose, onViewProfile }) => {
     setIsSending(true);
 
     try {
-      await API.post('/chat', { message: msg }, { headers: { Authorization: `Bearer ${token}` } });
-      setMessages(prev => prev.filter(m => m._id !== tempId));
+      const res = await API.post('/chat', { message: msg }, { headers: { Authorization: `Bearer ${token}` } });
+      // Replace the temporary message with the actual message from the database to avoid flickering
+      setMessages(prev => prev.map(m => m._id === tempId ? res.data : m));
       setPendingIds(p => { const n = new Set(p); n.delete(tempId); return n; });
     } catch (err) {
       setMessages(prev => prev.map(m => m._id === tempId ? { ...m, failed: true, pending: false } : m));
@@ -311,19 +313,22 @@ const GlobalChat = ({ isOpen, onClose, onViewProfile }) => {
                             </div>
                           ) : (
                             <div className="relative group/bubble">
-                              <div className={`px-4 py-2.5 rounded-2xl text-sm leading-relaxed font-medium shadow-sm transition-all ${isOwn
+                              <div 
+                                onClick={() => isOwn && !isPending && !isConfirmingDelete && setActiveActionId(activeActionId === msg._id ? null : msg._id)}
+                                className={`px-4 py-2.5 rounded-2xl text-sm leading-relaxed font-medium shadow-sm transition-all cursor-pointer ${isOwn
                                 ? 'bg-gradient-to-br from-blue-600 to-indigo-600 text-white rounded-tr-sm'
                                 : 'bg-white dark:bg-white/10 text-slate-800 dark:text-slate-200 border border-black/5 dark:border-white/10 rounded-tl-sm'
-                                } ${isPending ? 'opacity-70' : ''} ${isConfirmingDelete ? 'blur-[2px] pointer-events-none opacity-40' : ''}`}>
+                                } ${isPending ? 'opacity-70' : ''} ${isConfirmingDelete ? 'blur-[2px] pointer-events-none opacity-40' : ''}`}
+                              >
                                 {msg.message}
                               </div>
 
-                              {/* Edit/Delete Actions - Fixed hover zone */}
+                              {/* Edit/Delete Actions - Fixed hover zone + Mobile Tap support */}
                               {isOwn && !isPending && !isConfirmingDelete && (
-                                <div className={`absolute top-0 ${isOwn ? 'right-full pr-2' : 'left-full pl-2'} h-full flex items-center opacity-0 group-hover/bubble:opacity-100 transition-opacity duration-200 z-10`}>
+                                <div className={`absolute top-0 ${isOwn ? 'right-full pr-2' : 'left-full pl-2'} h-full flex items-center transition-all duration-200 z-10 ${activeActionId === msg._id ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-2 group-hover/bubble:opacity-100 group-hover/bubble:translate-x-0'} pointer-events-none group-hover/bubble:pointer-events-auto ${activeActionId === msg._id ? 'pointer-events-auto' : ''}`}>
                                   <div className="flex gap-1 items-center bg-white/90 dark:bg-slate-800/90 backdrop-blur-md rounded-xl p-1 shadow-xl border border-black/5 dark:border-white/10">
-                                    <button onClick={() => { setEditingId(msg._id); setEditValue(msg.message); }} className="p-1.5 hover:bg-black/5 dark:hover:bg-white/5 rounded-lg text-slate-500 hover:text-blue-500 transition-colors" title="Edit"><Pencil size={14} /></button>
-                                    <button onClick={() => handleDelete(msg._id)} className="p-1.5 hover:bg-black/5 dark:hover:bg-white/5 rounded-lg text-slate-500 hover:text-red-500 transition-colors" title="Delete"><Trash2 size={14} /></button>
+                                    <button onClick={(e) => { e.stopPropagation(); setEditingId(msg._id); setEditValue(msg.message); setActiveActionId(null); }} className="p-1.5 hover:bg-black/5 dark:hover:bg-white/5 rounded-lg text-slate-500 hover:text-blue-500 transition-colors" title="Edit"><Pencil size={14} /></button>
+                                    <button onClick={(e) => { e.stopPropagation(); handleDelete(msg._id); setActiveActionId(null); }} className="p-1.5 hover:bg-black/5 dark:hover:bg-white/5 rounded-lg text-slate-500 hover:text-red-500 transition-colors" title="Delete"><Trash2 size={14} /></button>
                                   </div>
                                 </div>
                               )}

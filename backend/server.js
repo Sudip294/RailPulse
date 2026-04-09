@@ -57,6 +57,9 @@ io.on('connection', (socket) => {
   });
 });
 
+// Set io globally so controllers can use req.app.get('io')
+app.set('io', io);
+
 // Database connection
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('MongoDB connected'))
