@@ -89,6 +89,13 @@ const GlobalChat = ({ isOpen, onClose, onViewProfile }) => {
           setPendingIds(p => { const n = new Set(p); n.delete(msg._id); return n; });
           return prev.map(m => m._id === msg._id ? msg : m);
         }
+        
+        // If the socket arrives before the API returns, replace the optimistic message instead of duplicating it
+        const isMyPendingMsg = prev.some(m => m.pending && m.userId === msg.userId && m.message === msg.message);
+        if (isMyPendingMsg) {
+          return prev.map(m => (m.pending && m.userId === msg.userId && m.message === msg.message) ? msg : m);
+        }
+
         return [...prev, msg];
       });
     };
@@ -148,8 +155,15 @@ const GlobalChat = ({ isOpen, onClose, onViewProfile }) => {
 
     try {
       const res = await API.post('/chat', { message: msg }, { headers: { Authorization: `Bearer ${token}` } });
-      // Replace the temporary message with the actual message from the database to avoid flickering
-      setMessages(prev => prev.map(m => m._id === tempId ? res.data : m));
+      setMessages(prev => {
+        // If the socket already added the message while the API was thinking
+        const alreadyAddedBySocket = prev.some(m => m._id === res.data._id);
+        if (alreadyAddedBySocket) {
+           return prev.filter(m => m._id !== tempId);
+        } else {
+           return prev.map(m => m._id === tempId ? res.data : m);
+        }
+      });
       setPendingIds(p => { const n = new Set(p); n.delete(tempId); return n; });
     } catch (err) {
       setMessages(prev => prev.map(m => m._id === tempId ? { ...m, failed: true, pending: false } : m));
